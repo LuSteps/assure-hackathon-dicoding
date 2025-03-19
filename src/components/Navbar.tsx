@@ -8,15 +8,24 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import NavbarDrawer from "./NavbarDrawer";
-import { alpha, Button, Container } from "@mui/material";
+import { Button, Container } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { NavbarItems, Props } from "@/model/types";
 
-interface Props {
-  window?: () => Window;
-}
-
-const drawerWidth = 240;
-const navItems = ["Login", "Register"];
+const navItems: Array<NavbarItems> = [
+  {
+    id: 1,
+    destination: "Login",
+    buttonType: true,
+    color: true
+  },
+  {
+    id: 2,
+    destination: "Register",
+    buttonType: false,
+    color: false
+  }
+]
 
 function Navbar(props: Props) {
   const { window } = props;
@@ -59,24 +68,24 @@ function Navbar(props: Props) {
 
             <Box
               sx={{
-                display: { xs: "none", sm: "block" },
+                display: { xs: "none", sm: "flex" },
+                gap: 2
               }}
             >
               {navItems.map((item) => (
                 <Button
-                  key={item}
+                  key={item.id}
+                  variant={item.buttonType ? "outlined" : "contained"}
+                  color={item.color ? "primary" : "success"}
                   sx={{
                     color: "#fff",
                     fontSize: 16,
                     fontWeight: 600,
-                    ":hover": {
-                      background: alpha("#fff", 0.15)
-                    },
                     paddingX: 2
                   }}
-                  onClick={() => router.push(`${item.toLowerCase()}`)}
+                  onClick={() => router.push(`${item.destination.toLowerCase()}`)}
                 >
-                  {item}
+                  {item.destination}
                 </Button>
               ))}
             </Box>
@@ -109,13 +118,13 @@ function Navbar(props: Props) {
             display: { xs: "block", sm: "none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
-              width: drawerWidth,
+              width: 240,
             },
           }}
         >
           <NavbarDrawer
             handleDrawerToggle={handleDrawerToggle}
-            navItems={navItems}
+            navItems={["Login", "Register"]}
           />
         </Drawer>
       </nav>
