@@ -1,7 +1,8 @@
 import React from "react";
+import ProtectedRoute from "../components/auth/ProtectedRoute";
 
 export default function DashboardLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  return <div>{children}</div>;
+  return <ProtectedRoute>{children}</ProtectedRoute>;
 }

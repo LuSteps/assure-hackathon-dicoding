@@ -12,7 +12,7 @@ export const useAuth = () => {
     if (!user) {
       router.push('/login');
     } else {
-      router.push('/dashboard');
+      router.push('/dashboard')
     }
   }, [user, router]);
 

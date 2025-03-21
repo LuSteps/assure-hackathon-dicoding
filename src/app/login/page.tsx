@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Box,
   Button,
@@ -18,6 +18,7 @@ import { auth } from "@/apis/firebaseConfig";
 import { loginStart, loginSuccess, loginFailure } from "@/store/authSlice";
 import { useAuthListener } from "@/store/hooks/useAuthListener";
 import { useDispatch } from "react-redux";
+import { useAuth } from "@/store/hooks/useAuth";
 
 const LoginPage: React.FC = () => {
   const router = useRouter();
@@ -32,11 +33,6 @@ const LoginPage: React.FC = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  // useEffect(() => {
-  //   auth.signOut()
-  //   console.log(auth.currentUser);
-  // });
-
   const onSubmit = async (data: LoginFormData) => {
     const result = loginSchema.safeParse(data);
 
@@ -50,19 +46,25 @@ const LoginPage: React.FC = () => {
           data.password
         );
 
-        // Extract serializable data from Firebase User object
+        const jwt = await userCredential.user.getIdToken(true);
+
         const { uid, email, displayName } = userCredential.user;
 
-        // Dispatch only serializable data
-        dispatch(loginSuccess({ uid, email, displayName }));
+        dispatch(loginSuccess({ uid, email, displayName, jwt }));
         router.push("/dashboard");
       }
     } catch (error: any) {
-      dispatch(loginFailure(error.message));
+      setError("root", { message: error.message });
     }
   };
 
   useAuthListener();
+
+  const user = useAuth();
+
+  if (user) {
+    return <></>;
+  }
 
   return (
     <div className="h-screen flex justify-center items-center">
@@ -82,7 +84,7 @@ const LoginPage: React.FC = () => {
               name="email"
               autoComplete="email"
               autoFocus
-              error={!!errors.email}
+              error={!!errors.email || !!errors.root}
             />
 
             {errors.email && (
@@ -100,7 +102,7 @@ const LoginPage: React.FC = () => {
               type="password"
               id="password"
               autoComplete="current-password"
-              error={!!errors.password}
+              error={!!errors.password || !!errors.root}
             />
 
             {errors.password && (
@@ -113,14 +115,20 @@ const LoginPage: React.FC = () => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 1 }}
               disabled={isSubmitting}
               color="primary"
             >
               {isSubmitting ? "Signing in..." : "Sign In"}
             </Button>
 
-            <Box sx={{ textAlign: "center" }}>
+            {errors.root && (
+              <p className="text-red-500 text-xs italic text-center">
+                {errors.root.message}
+              </p>
+            )}
+
+            <Box sx={{ textAlign: "center", mt: 1 }}>
               <Link href="/register" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>

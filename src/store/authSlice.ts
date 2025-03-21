@@ -5,6 +5,7 @@ interface AuthState {
     uid: string;
     email: string | null;
     displayName: string | null;
+    jwt: string;
   } | null;
   loading: boolean;
   error: string | null;
@@ -26,7 +27,7 @@ const authSlice = createSlice({
     },
     loginSuccess(
       state,
-      action: PayloadAction<{ uid: string; email: string | null; displayName: string | null }>
+      action: PayloadAction<{ uid: string; email: string | null; displayName: string | null; jwt: string }>
     ) {
       state.user = action.payload;
       state.loading = false;

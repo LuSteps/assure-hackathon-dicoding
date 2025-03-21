@@ -1,14 +1,14 @@
 "use client";
 import React from "react";
 import { useAuthListener } from "@/store/hooks/useAuthListener";
-import ProtectedRoute from "@/components/ProtectedRoute";
+import NavbarDashboard from "../components/navbar/NavbarDashboard";
 
 export default function DashboardPage() {
   useAuthListener();
 
   return (
-    <ProtectedRoute>
-      <div>DashboardPage</div>
-    </ProtectedRoute>
+    <div>
+      <NavbarDashboard />
+    </div>
   );
 }

@@ -1,10 +1,12 @@
-import Navbar from "@/components/Navbar";
-import BlurText from "@/components/BlurText";
+import Navbar from "@/app/components/navbar/Navbar";
+import BlurText from "@/app/components/BlurText";
+import AuroraBackground from "./components/background/AuroraBackground";
 
 export default function Home() {
   return (
-    <div>
+    <AuroraBackground>
       <Navbar />
+
       <div className="mx-auto h-screen grid grid-cols-1 content-center text-center flex-wrap space-between gap-4">
         <BlurText
           text="Welcome to the Website"
@@ -22,6 +24,6 @@ export default function Home() {
           turpis finibus quis.
         </p>
       </div>
-    </div>
+    </AuroraBackground>
   );
 }
