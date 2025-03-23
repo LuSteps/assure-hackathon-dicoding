@@ -9,6 +9,10 @@ export default function DashboardPage() {
   return (
     <div>
       <NavbarDashboard />
+
+      <div className="mt-20">
+        <h1>Hello World</h1>
+      </div>
     </div>
   );
 }

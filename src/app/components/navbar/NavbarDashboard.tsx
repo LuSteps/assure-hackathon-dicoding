@@ -53,7 +53,7 @@ export default function NavbarDashboard(props: Props) {
               <MenuIcon />
             </IconButton>
             <Typography
-              variant="h5"
+              variant="h6"
               component="a"
               href="/"
               sx={{

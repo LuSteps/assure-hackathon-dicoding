@@ -15,7 +15,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { LoginFormData, loginSchema } from "@/model/types";
 import { auth } from "@/apis/firebaseConfig";
-import { loginStart, loginSuccess, loginFailure } from "@/store/authSlice";
+import { loginStart, loginSuccess } from "@/store/authSlice";
 import { useAuthListener } from "@/store/hooks/useAuthListener";
 import { useDispatch } from "react-redux";
 import { useAuth } from "@/store/hooks/useAuth";
@@ -23,6 +23,7 @@ import { useAuth } from "@/store/hooks/useAuth";
 const LoginPage: React.FC = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const user = useAuth();
 
   const {
     register,
@@ -59,8 +60,6 @@ const LoginPage: React.FC = () => {
   };
 
   useAuthListener();
-
-  const user = useAuth();
 
   if (user) {
     return <></>;
