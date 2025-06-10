@@ -15,15 +15,21 @@ import { NavbarItems, Props } from "@/model/types";
 const navItems: Array<NavbarItems> = [
   {
     id: 1,
-    destination: "Login",
+    destination: "About",
     buttonType: true,
     color: true
   },
   {
     id: 2,
-    destination: "Register",
-    buttonType: false,
-    color: false
+    destination: "Contact",
+    buttonType: true,
+    color: true
+  },
+  {
+    id: 3,
+    destination: "Volunteer",
+    buttonType: true,
+    color: true
   }
 ]
 
@@ -41,7 +47,7 @@ function Navbar(props: Props) {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <AppBar component="nav" sx={{ backgroundColor: "common.black" }}>
+      <AppBar component="nav" sx={{ background: 'linear-gradient(90deg, #72846A 0%, #66A7CD 100%)' }}>
         <Container maxWidth="lg">
           <Toolbar>
             <IconButton
@@ -53,28 +59,36 @@ function Navbar(props: Props) {
             >
               <MenuIcon />
             </IconButton>
+            <img
+              src="/Logo.png"
+              alt="Logo"
+              className="hidden sm:block mr-4"
+              style={{ height: 40, marginRight: 32 }}
+            />
             <Typography
-              variant="h5"
+              variant="h6"
+              noWrap
               component="a"
-              href="/"
               sx={{
-                flexGrow: 1,
-                display: { xs: "none", sm: "block" },
-                fontWeight: 600
+                display: { xs: "flex", sm: "none" },
+                textDecoration: "none",
               }}
             >
               LOGO
             </Typography>
-
             <Box
               sx={{
+                flexGrow: 1,
                 display: { xs: "none", sm: "flex" },
+                justifyContent: "center",
                 gap: 2
               }}
             >
               {navItems.map((item) => (
                 <Button
                   key={item.id}
+                  component="a"
+                  href={`#${item.destination.toLowerCase()}`}
                   variant={item.buttonType ? "outlined" : "contained"}
                   color={item.color ? "primary" : "success"}
                   sx={{
@@ -83,25 +97,17 @@ function Navbar(props: Props) {
                     fontWeight: 600,
                     paddingX: 2
                   }}
-                  onClick={() => router.push(`${item.destination.toLowerCase()}`)}
                 >
                   {item.destination}
                 </Button>
               ))}
             </Box>
-
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              sx={{
-                flexGrow: 1,
-                display: { xs: "flex", sm: "none" },
-                textDecoration: "none",
-              }}
-            >
-              LOGO
-            </Typography>
+            <img
+              src="/Logo.png"
+              alt="Logo"
+              className="flex sm:hidden"
+              style={{ height: 32 }}
+            />
           </Toolbar>
         </Container>
       </AppBar>
@@ -124,7 +130,7 @@ function Navbar(props: Props) {
         >
           <NavbarDrawer
             handleDrawerToggle={handleDrawerToggle}
-            navItems={["Login", "Register"]}
+            navItems={["About", "Contact", "Volunteer"]}
           />
         </Drawer>
       </nav>
