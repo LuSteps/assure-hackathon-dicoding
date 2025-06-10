@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import CustomTheme from "@/themes/customTheme";
 import "./globals.css";
 import ReduxProvider from "@/app/components/auth/ReduxProvider";
+import { cabinFont } from "@/fonts/fonts";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${cabinFont.className} antialiased`}
       >
         <ReduxProvider>
           <CustomTheme>{children}</CustomTheme>

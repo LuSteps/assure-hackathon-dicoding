@@ -1,5 +1,5 @@
 {
-  "name": "frontend-repo",
+  "name": "assure-hackathon-dicoding",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -17,6 +17,7 @@
     "@react-spring/web": "^9.7.5",
     "@reduxjs/toolkit": "^2.6.1",
     "firebase": "^11.4.0",
+    "framer-motion": "^12.16.0",
     "next": "15.2.3",
     "next-persist": "^1.2.4",
     "next-redux-wrapper": "^8.1.0",
