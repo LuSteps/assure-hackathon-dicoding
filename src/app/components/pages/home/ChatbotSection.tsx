@@ -1,6 +1,6 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
-import { TextField, Button, Paper, Typography, Box } from "@mui/material";
+import React, { useState, useRef } from "react";
+import { Box } from "@mui/material";
 import ChatInput from "./ChatInput";
 
 type Message = {
@@ -14,12 +14,6 @@ export default function ChatbotSection() {
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Scroll to bottom when messages update
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
-
-  // Simulate AI response with a delay
   const simulateAIResponse = (userMessage: string) => {
     setTimeout(() => {
       setMessages((prev) => [
