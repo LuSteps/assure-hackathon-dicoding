@@ -1,8 +1,8 @@
 import BlurText from "@/app/components/BlurText";
 import Navbar from "./components/navbar/Navbar";
 import { Cabin } from "next/font/google";
-import { cabinFont } from "@/fonts/fonts";
-import RotatingText from "./components/RotatingText";
+// import { cabinFont } from "@/fonts/fonts";
+// import RotatingText from "./components/RotatingText";
 import OurServices from "@/app/components/OurService";
 import ContactForm from "@/app/components/ContactForm";
 
@@ -36,7 +36,7 @@ export default function Home() {
             />
           </div>
 
-          <RotatingText
+          {/* <RotatingText
             texts={[
               "Aid",
               "Support",
@@ -54,7 +54,7 @@ export default function Home() {
             splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
             transition={{ type: "spring", damping: 30, stiffness: 400 }}
             rotationInterval={4000}
-          />
+          /> */}
         </div>
       </div>
 
