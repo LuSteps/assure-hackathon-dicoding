@@ -3,6 +3,8 @@ import Navbar from "./components/navbar/Navbar";
 import { Cabin } from "next/font/google";
 import { cabinFont } from "@/fonts/fonts";
 import RotatingText from "./components/RotatingText";
+import OurServices from "@/app/components/OurService";
+import ContactForm from "@/app/components/ContactForm";
 
 export default function Home() {
   return (
@@ -10,7 +12,7 @@ export default function Home() {
       <div
         className="relative w-full min-h-screen"
         style={{
-          backgroundImage: "url(/SeaBackground.svg)", // Fixed: use url() for background images
+          backgroundImage: "url(/SeaBackground.svg)",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -53,10 +55,6 @@ export default function Home() {
             transition={{ type: "spring", damping: 30, stiffness: 400 }}
             rotationInterval={4000}
           />
-
-          {/* <p className="md:max-w-3xl max-w-md md:text-xl text-lg font-medium mt-2 text-black">
-            Aid, Support , Stability, Urgency, Relief, and Empathy
-          </p> */}
         </div>
       </div>
 
@@ -87,6 +85,22 @@ export default function Home() {
           </p>
         </div>
       </div>
+
+      <div
+        className="w-full py-16"
+        style={{
+          background: "linear-gradient(to bottom, #FFFFFF 20%, #AAC1B1 80%)",
+        }}
+      >
+        {/* Our Services Section */}
+        <OurServices />
+
+        {/* Contact Form Section */}
+        <div className="mt-16">
+          <ContactForm />
+        </div>
+      </div>
+
     </>
   );
 }
