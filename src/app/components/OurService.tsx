@@ -2,7 +2,7 @@
 
 export default function OurServices() {
   return (
-    <div className="flex justify-center items-center flex-col space-y-12 w-full py-16 px-8">
+    <div className="flex justify-center items-center flex-col space-y-12 w-full px-8">
       <h2 className="text-4xl font-bold text-black">Our Services</h2>
       <div className="flex flex-wrap justify-center gap-12">
         {/* Service 1 */}

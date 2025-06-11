@@ -9,11 +9,7 @@ export default function Footer() {
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
             <a href="/" className="flex items-center">
-              <img
-                src="./Logo.png"
-                className="h-1/2 w-1/2 me-3"
-                alt="Logo"
-              />
+              <img src="./Logo.png" className="h-1/2 w-1/2 me-3" alt="Logo" />
             </a>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
@@ -28,7 +24,10 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href="https://tailwindcss.com/" className="hover:underline">
+                  <a
+                    href="https://tailwindcss.com/"
+                    className="hover:underline"
+                  >
                     Tailwind CSS
                   </a>
                 </li>

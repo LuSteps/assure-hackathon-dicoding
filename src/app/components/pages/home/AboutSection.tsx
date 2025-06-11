@@ -4,18 +4,18 @@ export default function AboutSection() {
   return (
     <div
       id="about"
-      className="w-full py-16 bg-white text-black flex flex-row items-center justify-center gap-45"
+      className="w-full py-16 bg-white text-black grid grid-cols-1 lg:grid-cols-2 gap-12 px-16"
     >
-      <div className="flex-shrink-0 p-10">
+      <div className="flex-shrink-0 mx-auto">
         <img
           src="/goat.jpeg"
           alt="About section image"
-          className="w-128 h-64 object-contain rounded-xl shadow"
+          className="w-md lg:w-xl object-contain rounded-xl shadow"
         />
       </div>
-      <div className="flex flex-col items-start pr-24">
+      <div className="flex flex-col items-start mx-auto">
         <h2 className="text-4xl font-bold mb-2">Life's Fun, not nuF!</h2>
-        <p className="text-lg bg-gray-100 rounded-lg p-4 max-w-md shadow text-justify">
+        <p className="text-sm lg:text-lg bg-gray-100 rounded-lg p-4 max-w-lg shadow text-justify">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam elementum
           dignissim augue sit amet facilisis. Integer euismod interdum eros, ut
           interdum sem. Integer enim nibh, porta vitae ex a, finibus pharetra

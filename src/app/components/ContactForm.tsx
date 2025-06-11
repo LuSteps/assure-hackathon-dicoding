@@ -34,7 +34,7 @@ export default function ContactForm() {
       <div className="bg-white/80 p-8 rounded-xl shadow-lg w-full max-w-xl">
         <div className="text-center mb-6">
           <h2 className="text-4xl font-bold mb-2">
-            <span className="text-black">Let’s get </span>
+            <span className="text-black">Let's get </span>
             <span className="text-[#74846A]">involved</span>
           </h2>
           <p className="text-gray-700">
@@ -50,7 +50,7 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             placeholder="Nama"
-            className="w-full border border-gray-300 rounded px-3 py-2 placeholder-gray-500"
+            className="w-full border border-gray-300 rounded px-3 py-2 placeholder-gray-500 text-black"
           />
           <input
             type="email"
@@ -59,7 +59,7 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             placeholder="Email"
-            className="w-full border border-gray-300 rounded px-3 py-2 placeholder-gray-500"
+            className="w-full border border-gray-300 rounded px-3 py-2 placeholder-gray-500 text-black"
           />
           <input
             type="tel"
@@ -68,7 +68,7 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             placeholder="No. Telepon"
-            className="w-full border border-gray-300 rounded px-3 py-2 placeholder-gray-500"
+            className="w-full border border-gray-300 rounded px-3 py-2 placeholder-gray-500 text-black"
           />
 
           <div className="flex justify-end pt-4">
