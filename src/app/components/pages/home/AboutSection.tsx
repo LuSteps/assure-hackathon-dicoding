@@ -8,23 +8,17 @@ export default function AboutSection() {
     >
       <div className="flex-shrink-0 mx-auto">
         <img
-          src="/goat.jpeg"
+          src="/image-1.jpg"
           alt="About section image"
           className="w-md lg:w-xl object-contain rounded-xl shadow"
         />
       </div>
       <div className="flex flex-col items-start mx-auto">
-        <h2 className="text-4xl font-bold mb-2">Life's Fun, not nuF!</h2>
+        <span className="text-2xl mb-2">Your Pain is Valid. <b className="text-[#74846A]">Your Hope Matters.</b></span>
         <p className="text-sm lg:text-lg bg-gray-100 rounded-lg p-4 max-w-lg shadow text-justify">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam elementum
-          dignissim augue sit amet facilisis. Integer euismod interdum eros, ut
-          interdum sem. Integer enim nibh, porta vitae ex a, finibus pharetra
-          ex. Donec quis tincidunt ligula, in pharetra risus. Vestibulum
-          porttitor mi et porta malesuada. Fusce placerat blandit erat, ut
-          laoreet felis finibus et. Orci varius natoque penatibus et magnis dis
-          parturient montes, nascetur ridiculus mus. Nulla pharetra vehicula
-          arcu, lobortis commodo tellus. Duis faucibus facilisis malesuada.
-          Nulla bibendum nunc et ipsum scelerisque rutrum.
+          Every struggle deserves to be heard—no pain is too small, no burden too heavy to share. Backed by evidence-based practices and a network of trained volunteers, we offer a judgment-free space where healing begins with a single conversation.
+          <br /><br />
+          Our platform provides immediate support through AI-assisted counseling and psychological first aid resources. If you're passionate about mental health advocacy, join our volunteer community to help create life-changing connections.
         </p>
       </div>
     </div>

@@ -13,7 +13,7 @@ export default function ChatInput({
   value,
   onChange,
   onSubmit,
-  placeholder = "Say something about your concern to BW...",
+  placeholder = "Say something about your concern...",
 }: ChatInputProps) {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
