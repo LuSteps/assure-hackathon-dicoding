@@ -17,6 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <meta name="dicoding:email" content="paullmich28@gmail.com" />
       <body
         className={`${cabinFont.className} antialiased`}
       >
