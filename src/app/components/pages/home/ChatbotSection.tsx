@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Box } from "@mui/material";
 import ChatInput from "./ChatInput";
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from "react-markdown";
 
 type Message = {
   id: number;
@@ -13,6 +13,7 @@ type Message = {
 export default function ChatbotSection() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -23,41 +24,47 @@ export default function ChatbotSection() {
   }, [messages]);
 
   const simulateAIResponse = async (userMessage: string) => {
+    setIsTyping(true);
+
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_AZURE_OPENAI_ENDPOINT}?api-version=${process.env.NEXT_PUBLIC_AZURE_OPENAI_API_VERSION}`,
         {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
-            'api-key': process.env.NEXT_PUBLIC_AZURE_OPENAI_API_KEY || '',
+            "Content-Type": "application/json",
+            "api-key": process.env.NEXT_PUBLIC_AZURE_OPENAI_API_KEY || "",
           },
           body: JSON.stringify({
             messages: [
               {
                 role: "system",
-                content: "You are a compassionate and supportive psychologist assistant bot. Your role is to assist volunteer counselors to get overview of client mental health data,  calmly and empathetically engage with users who may be experiencing emotional distress, anxiety, or frustration. Always respond with warmth, understanding, and reassurance. Use the tone and techniques provided in the knowledge base to guide your interactions. Your goal is to help the user feel heard, validated, and gently guided toward a calmer, more grounded state of mind."
+                content:
+                  "You are a compassionate and supportive psychologist assistant bot. Your role is to assist volunteer counselors to get overview of client mental health data,  calmly and empathetically engage with users who may be experiencing emotional distress, anxiety, or frustration. Always respond with warmth, understanding, and reassurance. Use the tone and techniques provided in the knowledge base to guide your interactions. Your goal is to help the user feel heard, validated, and gently guided toward a calmer, more grounded state of mind.",
               },
               {
                 role: "user",
-                content: userMessage
-              }
+                content: userMessage,
+              },
             ],
-            model: "gpt-4o-mini"
+            model: "gpt-4o-mini",
           }),
         }
       );
 
       const data = await response.json();
-      const aiResponse = data.choices[0]?.message?.content || "I didn't get a response.";
+      const aiResponse =
+        data.choices[0]?.message?.content || "I didn't get a response.";
+
+      messages.pop();
 
       setMessages((prev) => [
         ...prev,
         {
           id: prev.length + 1,
           sender: "ai",
-          text: aiResponse
-        }
+          text: aiResponse,
+        },
       ]);
     } catch (error) {
       console.error("API Error:", error);
@@ -66,12 +73,14 @@ export default function ChatbotSection() {
         {
           id: prev.length + 1,
           sender: "ai",
-          text: "Sorry, I'm having trouble responding right now."
-        }
+          text: "Sorry, I'm having trouble responding right now.",
+        },
       ]);
+    } finally {
+      setIsTyping(false);
     }
   };
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
@@ -89,7 +98,8 @@ export default function ChatbotSection() {
       <Box className="flex flex-col w-full max-w-5xl rounded-lg p-6 h-[80vh]">
         {messages.length === 0 && (
           <p className="mx-auto text-black font-bold text-xl mt-10">
-            Need Someone to talk to? A-Lisa is Here to Help! - powered by Azure OpenAI
+            Need Someone to talk to? A-Lisa is Here to Help! - powered by Azure
+            OpenAI
           </p>
         )}
 
@@ -108,9 +118,11 @@ export default function ChatbotSection() {
                     : "bg-gray-300 text-gray-900 rounded-bl-none"
                 }`}
               >
-                <ReactMarkdown 
+                <ReactMarkdown
                   components={{
-                    strong: ({node, ...props}) => <strong className="font-bold" {...props} />
+                    strong: ({ node, ...props }) => (
+                      <strong className="font-bold" {...props} />
+                    ),
                   }}
                 >
                   {message.text}
@@ -118,6 +130,21 @@ export default function ChatbotSection() {
               </div>
             </div>
           ))}
+          {isTyping && (
+            <div
+                className="max-w-xs px-4 py-2 rounded-lg break-words whitespace-pre-wrap bg-gray-300 text-gray-900 rounded-bl-none"
+              >
+                <ReactMarkdown
+                  components={{
+                    strong: ({ node, ...props }) => (
+                      <strong className="font-bold" {...props} />
+                    ),
+                  }}
+                >
+                  A-Lisa is typing...
+                </ReactMarkdown>
+              </div>
+          )}
           <div ref={messagesEndRef} />
         </div>
 
