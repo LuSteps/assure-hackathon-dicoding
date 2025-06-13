@@ -30,7 +30,7 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="w-full flex justify-center items-center py-20">
+    <div className="w-full flex justify-center items-center py-20 px-8">
       <div className="bg-white/80 p-8 rounded-xl shadow-lg w-full max-w-xl">
         <div className="text-center mb-6">
           <h2 className="text-4xl font-bold mb-2">
