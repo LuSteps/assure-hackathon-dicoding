@@ -7,7 +7,7 @@ export default function HeroSection() {
     <div className="relative w-full min-h-screen bg-[url(/SeaBackground.svg)] bg-cover bg-center">
       <Navbar />
 
-      <div className="mx-auto h-screen grid grid-cols-1 content-center text-left flex-wrap gap-4 pl-24">
+      <div className="mx-auto h-screen grid grid-cols-1 content-center text-left flex-wrap gap-4 px-8 lg:px-24">
         <div>
         <p
           className={`md:max-w-3xl max-w-md md:text-xl text-lg mb-2 uppercase text-[#5A6353]`}
