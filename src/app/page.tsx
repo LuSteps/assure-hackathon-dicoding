@@ -9,7 +9,10 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <AboutSection />
+      <div id="about-section">
+        <AboutSection />
+      </div>
+
       
       <div
         className="w-full py-16"
@@ -17,17 +20,18 @@ export default function Home() {
           background: "linear-gradient(to bottom, #FFFFFF 20%, #AAC1B1 80%)",
         }}
       >
-        {/* Our Services Section */}
+        
         <OurServices />
 
-        {/* Contact Form Section */}
-        <div className="mt-16">
+        <div className="mt-16" id="contact-form">
           <ContactForm />
         </div>
       </div>
       
       <ChatbotSection />
-      <Footer />
+      <div id="footer">
+        <Footer />
+      </div>
     </>
   );
 }

@@ -13,6 +13,13 @@ import { Props } from "@/model/types";
 
 const pages = ["About", "Contact", "Volunteer"];
 
+// Map each page name to the corresponding section ID
+const hrefMap: Record<string, string> = {
+  About: "#about-section",
+  Contact: "#footer",
+  Volunteer: "#contact-form",
+};
+
 function Navbar(props: Props) {
   const { window } = props;
 
@@ -46,8 +53,8 @@ function Navbar(props: Props) {
 
             <Button
               component="a"
-              href={"/"}
-              color={"primary"}
+              href="/"
+              color="primary"
               sx={{
                 fontSize: 16,
                 textDecoration: "none",
@@ -58,30 +65,32 @@ function Navbar(props: Props) {
 
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {pages.map((page) => (
-                <Button
-                  key={page}
-                  component="a"
-                  href={page.toLowerCase()}
-                  onClick={handleDrawerToggle}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {page}
-                </Button>
+                  <Button
+                    key={page}
+                    onClick={() => {
+                      const section = document.querySelector(hrefMap[page]);
+                      if (section) {
+                        section.scrollIntoView({ behavior: "smooth" });
+                      }
+                      setMobileOpen(false); // ensure drawer closes
+                    }}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    {page}
+                  </Button>
               ))}
             </Box>
-
           </Toolbar>
         </Container>
       </AppBar>
+
       <nav>
         <Drawer
           container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true,
-          }}
+          ModalProps={{ keepMounted: true }}
           sx={{
             display: { sm: "block", md: "none" },
             "& .MuiDrawer-paper": {
@@ -99,4 +108,5 @@ function Navbar(props: Props) {
     </Box>
   );
 }
+
 export default Navbar;
